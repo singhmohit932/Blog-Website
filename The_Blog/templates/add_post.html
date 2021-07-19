@@ -1,0 +1,40 @@
+{% extends 'base.html' %} 
+
+{%block title%}Create a new blog !! {%endblock%}
+
+{% block content %}
+
+
+{% if user.is_authenticated%}
+    <h1>Add Blog Post</h1>
+    <br><br> 
+    <div class ="form-group">
+        <form method="POST">
+            {% csrf_token%}
+            {{form.as_p}}
+            <button  class="btn btn-secondary">Post</button>
+        </form>
+    </div>
+
+    <script>
+        var name = "{{user.id}}";
+        document.getElementById("elder").value=name;
+
+    </script>
+{%else%}
+ 
+  ERROR:: YOU ARE NOT LOGGED  IN !!
+
+{%endif%}
+
+
+
+
+
+
+
+
+
+<br><br>
+<a href="{% url 'home'%}" class="btn btn-dark">BACK</a>
+{% endblock %}
